@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Supplier Management</span>
+      <span class="example-spacer"></span>
+      <button mat-raised-button (click)="addSupplier()"><mat-icon>add</mat-icon>Adicionar</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+<div style="padding-top: 50px;">
+  <table mat-table [dataSource]="supplierModel" class="mat-elevation-z8">
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let supplier"> {{supplier.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let supplier"> {{supplier.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Comment">
+      <th mat-header-cell *matHeaderCellDef> Comment </th>
+      <td mat-cell *matCellDef="let supplier"> {{supplier.comment}} </td>
+    </ng-container>
+    <ng-container matColumnDef="CNPJ">
+        <th mat-header-cell *matHeaderCellDef> CNPJ </th>
+        <td mat-cell *matCellDef="let supplier"> {{supplier.cnpj}} </td>
+    </ng-container>
+    <ng-container matColumnDef="icons">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let supplier">
+          <button mat-stroked-button color="accent" (click)="editSupplier(supplier.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-stroked-button color="warn" (click)="deleteSupplier(supplier.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let supplier; columns: columns;"></tr>
+  </table>
+</div>
+
+
